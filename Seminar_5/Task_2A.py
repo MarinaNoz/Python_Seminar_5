@@ -24,16 +24,13 @@ messages = ['Ваш ход брать конфеты', 'Возьмите кон�
  
 def game_friends_vs_friends(total_sweets, max_number_move, players, messages):
     count = 0
-    if total_sweets % 10 == 1 and 9 > total_sweets > 10: letter = 'а'
-    elif 1 < total_sweets % 10 < 5 and 9 > total_sweets > 10: letter = 'ы'
-    else: letter = ''
     first = random.randint(0, 1)
     print (f'\nПервый ход определён жеребьёвкой, начинает игрок № {first + 1} ')
  
     while total_sweets > 0:
         move = int(input(f'{players[first % 2]}, {random.choice(messages)}:'))
         if move > total_sweets or move > max_number_move:
-            print(f'Можно взять не более {max_number_move} конфет{letter}, у нас всего {total_sweets} конфет{letter}')
+            print(f'Можно взять не более {max_number_move} конфет, у нас всего {total_sweets} конфет')
             chance = 2
             while chance > 0:
                 if total_sweets >= move <= max_number_move:
@@ -45,7 +42,7 @@ def game_friends_vs_friends(total_sweets, max_number_move, players, messages):
                 return print(f'Попыток не осталось. Game over!')
         total_sweets = total_sweets - move
         if total_sweets > 0:
-            print(f'Осталось {total_sweets} конфет{letter}')
+            print(f'Осталось {total_sweets} конфет')
         else:
             print('Все конфеты разобраны.')
         first += 1
